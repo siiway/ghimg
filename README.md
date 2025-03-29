@@ -7,20 +7,17 @@ URL: `https://ghimg.siiway.top` *(+ 文件路径)*
 > [!IMPORTANT]
 > 注意文件大小不能超过 **25M**
 
-## 文件命名格式
+## 缓存策略
 
-```ini
-# 非强制
-<描述>.<版本>.<扩展>
+有两种情况会触发长缓存 **(6 个月)**:
+
+1. 查询字符串包含 `enable-cache`
+2. 文件扩展名为下面表达式中的一个
+
+> [!NOTE]
+> *前提条件：**查询字符串不包含 `disable-cache`***
+> 缓存规则表达式如下
+
 ```
-
-只需要注意 `版本` 从 1 开始，在图片内容更新后自增 1
-
-> 默认缓存策略: `max-age=31536000` *(缓存 1 年)* <br/>
-> 可以查看 `SiiWay-Cache-Control-Verify` 请求头来判断预期缓存策略
-
-## 固定 url
-
-如果需要固定的 url，将文件名的 `版本` 改为 `0`
-
-> 将使用不同的缓存策略: `no-cache` *(每次确认是否更新)*
+(http.host eq "ghimg.siiway.top" and http.request.uri.query contains "enable-cache" and not http.request.uri.query contains "disable-cache") or (http.host eq "ghimg.siiway.top" and http.request.uri.path.extension in {"7z" "avi" "avif" "apk" "bin" "bmp" "bz2" "class" "css" "csv" "doc" "docx" "dmg" "ejs" "eot" "eps" "exe" "flac" "gif" "gz" "ico" "iso" "jar" "jpg" "jpeg" "js" "mid" "midi" "mkv" "mp3" "mp4" "ogg" "otf" "pdf" "pict" "pls" "png" "ppt" "pptx" "ps" "rar" "svg" "svgz" "swf" "tar" "tif" "tiff" "ttf" "webm" "webp" "woff" "woff2" "xls" "xlsx" "zip" "zst"} and not http.request.uri.query contains "disable-cache")
+```
