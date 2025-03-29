@@ -16,6 +16,11 @@ URL: `https://ghimg.siiway.top` *(+ 文件路径)*
 
 只需要注意 `版本` 从 1 开始，在图片内容更新后自增 1
 
+> 默认缓存策略: `max-age=31536000` *(缓存 1 年)* <br/>
+> 可以查看 `SiiWay-Cache-Control-Verify` 请求头来判断预期缓存策略
+
 ## 固定 url
 
-如果需要固定的 url，在 `_redirects`
+如果需要固定的 url，将文件名的 `版本` 改为 `0`
+
+> 将使用不同的缓存策略: `no-cache` *(每次确认是否更新)*
