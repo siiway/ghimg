@@ -1,16 +1,3 @@
-/*.0.*
-  SiiWay-Content-Type: dynamic-image
-  SiiWay-Cache-Control-Verify: no-cache
-  Cache-Control: no-cache
-
-/*.*.*
-  SiiWay-Content-Type: static-image
-  SiiWay-Cache-Control-Verify: max-age=31536000
-  Cache-Control: max-age=31536000
-
 /*
   X-Robots-Tag: noindex
   Access-Control-Allow-Origin: *
-  SiiWay-Content-Type: other-resource
-  SiiWay-Cache-Control-Verify: no-cache
-  Cache-Control: no-cache
