@@ -21,11 +21,7 @@ def get_path(path: str) -> Path:
     '''
     相对路径 (基于主程序目录) -> 绝对路径
     '''
-    if current_dir().startswith('/var/task') and path == 'data.json':
-        # 适配 Vercel 部署 (调整 data.json 路径为可写的 /tmp/)
-        return '/tmp/sleepy_data.json'
-    else:
-        return str(Path(__file__).parent.joinpath(path))
+    return str(Path(__file__).parent.joinpath(path))
 
 
 def loaddir(dir: str = '.'):
@@ -58,7 +54,6 @@ if os.environ.get('CF_PAGES'):
 timenow = datetime.datetime.now(datetime.timezone.utc)
 emoji = {
     'utc_build_timestamp': int(timenow.timestamp()),
-    'utc_build_time': str(timenow),
     'is_cf_pages': bool(os.environ.get('CF_PAGES', False)),
     'commit_id': os.environ.get('CF_PAGES_COMMIT_SHA', None),
     'commit_branch': os.environ.get('CF_PAGES_BRANCH', None)
